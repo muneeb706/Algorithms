@@ -1,3 +1,5 @@
+import datetime
+
 
 def read_integers(filename):
     try:
@@ -45,8 +47,12 @@ if __name__ == '__main__':
             total_integers = integers[0]
             integer_list = integers[1:total_integers+1]
             if validate_length(total_integers, integer_list):
+                start_time = datetime.datetime.now().microsecond
                 print("Length of longest convex subsequence ( " + input_file + " ) : " + str(
                     get_longest_convex_subsequence_length(integer_list)))
+                end_time = datetime.datetime.now().microsecond
+                elapsed_time_millis = (end_time - start_time) / 1000
+                print("Execution time in miliseconds: " + str(elapsed_time_millis))
             else:
                 print("Total number of integers are not according to size mentioned in first line of file")
 
