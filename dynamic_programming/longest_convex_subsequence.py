@@ -35,19 +35,28 @@ def validate_length(length, integer_list):
     return False
 
 
+class Node:
+    length = 0
+    convex_subsequence = []
+
+
 def get_longest_convex_subsequence_length(integer_list):
 
     if len(integer_list) > 1:
-        m = [[0 for i in range(len(integer_list))] for j in range(len(integer_list))]
+        m = [[Node() for i in range(len(integer_list))] for j in range(len(integer_list))]
         i = len(integer_list) - 2
         while i >= 0:
             j = len(integer_list) - 1
             while j >= i + 1:
-                m[i][j] = 2
+                m[i][j].length = 2
+                arr = [integer_list[i], integer_list[j]]
+                m[i][j].convex_subsequence = arr
                 k = j + 1
                 while k < len(integer_list):
                     if integer_list[k] - integer_list[j] > integer_list[j] - integer_list[i]:
-                        m[i][j] = max(m[i][j], 1 + m[j][k])
+                        if m[i][j].length < (1 + m[j][k].length):
+                            m[i][j].convex_subsequence = [integer_list[i]] + m[j][k].convex_subsequence
+                        m[i][j].length = max(m[i][j].length, 1 + m[j][k].length)
                     k += 1
                 j -= 1
             i -= 1
@@ -67,8 +76,10 @@ if __name__ == '__main__':
             integer_list = integers[1:total_integers+1]
             if validate_length(total_integers, integer_list):
                 start_time = float(round(time.time()*1000))
-                print("Length of longest convex subsequence ( " + input_file + " ) : " + str(
-                    get_longest_convex_subsequence_length(integer_list)))
+                node = get_longest_convex_subsequence_length(integer_list)
+                print("Longest convex subsequence ( " + input_file + " ) : " + str(node.convex_subsequence))
+                print("Length of longest convex subsequence ( " + input_file + " ) : " + str(node.length))
+
                 end_time = float(round(time.time()*1000))
                 elapsed_time_millis = (end_time - start_time)
                 print("Execution time in milliseconds: " + str(elapsed_time_millis))
