@@ -62,7 +62,10 @@ def get_longest_convex_subsequence_length(integer_list):
             i -= 1
         return m[0][1]
     else:
-        return len(integer_list)
+        node = Node()
+        node.length = len(integer_list)
+        node.convex_subsequence = integer_list
+        return node
 
 
 if __name__ == '__main__':
@@ -87,4 +90,4 @@ if __name__ == '__main__':
                 print("Total number of integers are not according to size mentioned in first line of file")
 
         print("Enter 'exit' to terminate the program.")
-        input_file = input("Enter name of the input file: ")
+        input_file = input("Enter path of the input file (relative to program file location): ")
