@@ -1,7 +1,7 @@
 # Algorithms
-Contains implementation of solution in [python](https://www.python.org/) for different types of classic algorithm problems.
+Contains solution in [python](https://www.python.org/) for different types of classic algorithm problems.
 
-Following is description of the programming problems:
+Following is the description of the programming problems:
 
 - ## Dynamic Programming Problems
 
@@ -17,7 +17,7 @@ Following is description of the programming problems:
     Given X[1..m], define Y[2..m] by letting Y[i] = X[i] - X[i-1].
     Thus, Y is the sequence consisting of differences between successive terms of X.
     The sequence X is convex if and only if the sequence Y is increasing.
-    The name convex comes from the fact that is we plot the points (i, X[i]) in the plane, one gets a convex shape. 
+    The name convex comes from the fact that if we plot the points (i, X[i]) in the plane, one gets a convex shape. 
     The algorithmic problem we wish to solve is this. We are given as input a sequence A[1..n] of non-negative integers,
     and we wish to find a longest convex subsequence of A.
     For example, if A = [0, 3, 7, 8, 13], then a longest convex subsequence is [0, 3, 7, 13].
